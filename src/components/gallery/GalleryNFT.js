@@ -6,30 +6,22 @@ const GalleryNFT = ({ nftCount, top, overflow, height }) => {
   const createNFTimg = () => {
     const resultsRender = [];
 
-    const x = nft.length >= 80 ? 80 : nft.length;
+    const x = nft.length >= 16 ? 16 : nft.length;
 
     for (var i = 0; i < nft.length; i += x) {
-      const diff = i === 0 ? x : nft.length - i > 80 ? 80 : nft.length - i;
       resultsRender.push(
         <BoxWrapper key={Math.random()}>
           {nft
-            .slice(i, i + diff / 5)
+            .slice(i, i + 16)
             // eslint-disable-next-line no-loop-func
             .map((img, index) => (
               <NftBox key={Math.random()}>
-                {nft.slice(i, i + 5).map((img, index) => (
-                  <Vector
-                    key={Math.random()}
-                    index={index}
-                    background={
-                      index % 2 === 0
-                        ? "#5E9B9B"
-                        : index % 3 === 0
-                        ? "#70B1A2"
-                        : "#8AD1AC"
-                    }
-                  />
-                ))}
+                <Vector
+                  key={Math.random()}
+                  index={index}
+                  background={` https://storage.googleapis.com/solar_panel_test/solar_panel_test_${img}.png?fbclid=IwAR1NvDxZXkkbdp4o7sY6NM5zRRoxKxxIuhO5fdrmPzlmreEljVKWKYsX5G4`}
+                />
+                <Number>{img}</Number>
               </NftBox>
             ))}
         </BoxWrapper>
@@ -86,19 +78,26 @@ const BoxWrapper = styled.div`
 `;
 
 const NftBox = styled.div`
-  display: grid;
-  grid-template-columns: auto auto auto auto auto;
-  gap: 2px;
+  position: relative;
+  width: auto;
+  height: auto;
   margin: 2px;
 `;
 const Vector = styled.div`
   position: relative;
   gap: 3px;
-  width: 12px;
-  height: 70px;
-  background: ${(props) => props.background};
-  border-top-left-radius: ${(props) => props.index === 0 && "7"}px;
-  border-bottom-left-radius: ${(props) => props.index === 0 && "7"}px;
-  border-top-right-radius: ${(props) => props.index === 4 && "8"}px;
-  border-bottom-right-radius: ${(props) => props.index === 4 && "8"}px;
+  width: 50px;
+  height: 50px;
+  border-radius: 8px;
+  background: transparent url(${(props) => props.background}) top center
+    no-repeat;
+  background-size: contain;
+`;
+const Number = styled.div`
+  position: absolute;
+  font-size: 14px;
+  top: -3px;
+  color: rgb(31 107 171);
+  z-index: 2;
+  z-index: 2;
 `;
