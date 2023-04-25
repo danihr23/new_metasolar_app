@@ -11,7 +11,7 @@ const Gallery = () => {
   return (
     <Wrapper>
       <HomePageGallery height="206px" width="64%" position="relative" />
-      <GalleryNFT nftCount={100} position="relative" height="auto" />
+      <GalleryNFT nftCount={6} position="relative" height="auto" />
       <Footer position="relative" onClickBuy={onClick} />
     </Wrapper>
   );

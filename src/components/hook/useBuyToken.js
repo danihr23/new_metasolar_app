@@ -9,7 +9,7 @@ const useBuyToken = () => {
   const buyToken = async (userAddress, nftCount) => {
     try {
       const web3 = new Web3(window.ethereum);
-      const contractAddress = "0x6364Cc28fe3A66e83f8ff6B6e15001a6AC556611";
+      const contractAddress = "0xb764fC41c0E4e67c29D18bd5EFFE187688d6060C";
       const contractAbi = MetaSolarNFT.abi;
       const contract = new web3.eth.Contract(contractAbi, contractAddress);
       const mintQuantity = nftCount;

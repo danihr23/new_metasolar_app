@@ -21600,6 +21600,7 @@
 			"getApproved(uint256)": "081812fc",
 			"isApprovedForAll(address,address)": "e985e9c5",
 			"name()": "06fdde03",
+			"onwedTokens(address)": "715be9a9",
 			"ownerOf(uint256)": "6352211e",
 			"safeTransferFrom(address,address,uint256)": "42842e0e",
 			"safeTransferFrom(address,address,uint256,bytes)": "b88d4fde",
@@ -21899,6 +21900,25 @@
 		{
 			"inputs": [
 				{
+					"internalType": "address",
+					"name": "owner",
+					"type": "address"
+				}
+			],
+			"name": "onwedTokens",
+			"outputs": [
+				{
+					"internalType": "uint256[]",
+					"name": "",
+					"type": "uint256[]"
+				}
+			],
+			"stateMutability": "view",
+			"type": "function"
+		},
+		{
+			"inputs": [
+				{
 					"internalType": "uint256",
 					"name": "tokenId",
 					"type": "uint256"
@@ -21957,7 +21977,7 @@
 				},
 				{
 					"internalType": "bytes",
-					"name": "_data",
+					"name": "data",
 					"type": "bytes"
 				}
 			],

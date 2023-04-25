@@ -1,8 +1,19 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components/macro";
-
+import { useSelector } from "react-redux";
+import useGetOwnedTokenIds from "../hook/useGetOwnedTokenIds";
 const GalleryNFT = ({ nftCount, top, overflow, height }) => {
-  const nft = Array.from({ length: nftCount }, (_, i) => i + 1);
+  const response = useSelector((state) => state.userAddres.ownedTokenIds);
+  const userAddres = useSelector((state) => state.userAddres.value);
+
+  const { getOwnedTokenIds } = useGetOwnedTokenIds();
+
+  useEffect(() => {
+    userAddres && getOwnedTokenIds(userAddres);
+  }, [userAddres]);
+
+  console.log(4444, response);
+  const nft = response;
   const createNFTimg = () => {
     const resultsRender = [];
 
@@ -33,6 +44,7 @@ const GalleryNFT = ({ nftCount, top, overflow, height }) => {
 
   return (
     <Wrapper top={top} overflow={overflow} heigth={height}>
+      {!userAddres && <Response>Please connect your wallet !</Response>}
       {createNFTimg()}
     </Wrapper>
   );
@@ -59,7 +71,7 @@ const Wrapper = styled.div`
 
   @media (max-width: 440px) {
     grid-template-columns: auto auto;
-  } ;
+  }
 `;
 
 const BoxWrapper = styled.div`
@@ -74,7 +86,7 @@ const BoxWrapper = styled.div`
   }
   @media (max-width: 690px) {
     grid-template-columns: auto auto;
-  } ;
+  }
 `;
 
 const NftBox = styled.div`
@@ -96,8 +108,39 @@ const Vector = styled.div`
 const Number = styled.div`
   position: absolute;
   font-size: 14px;
-  top: -3px;
-  color: rgb(31 107 171);
+  top: 16px;
+  left: 21px;
+  color: rgb(243, 248, 252);
   z-index: 2;
-  z-index: 2;
+`;
+const Response = styled.div`
+  width: 100%;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 27px;
+  line-height: 29px;
+  color: rgb(181 55 55);
+  @media (max-width: 1100px) {
+    font-size: 21px;
+    line-height: 28px;
+    width: 90%;
+  }
+  @media (max-width: 930px) {
+    font-size: 21px;
+    line-height: 22px;
+    width: 90%;
+  }
+
+  @media (max-width: 720px) {
+    font-size: 17px;
+    line-height: 19px;
+    width: 90%;
+  }
+
+  @media (max-width: 440px) {
+    font-size: 17px;
+    line-height: 20px;
+    width: 90%;
+  }
 `;
